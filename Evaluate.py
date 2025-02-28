@@ -19,7 +19,7 @@ print(f"'{target_dataset}' in TensorFlow Datasets: {target_dataset in datasets_l
 )
 class_names = ds_info.features["label"].names
 
-# Load your trained model
+# Load trained model
 model_path = "Food_Vision_efficientnetb1_feature_extract_model"
 try:
     if os.path.exists(model_path):
