@@ -15,7 +15,7 @@ dataset_list = tfds.list_builders()
                                              with_info=True)
 
 
-# Get class names  <-- FIX: Get class names from ds_info
+# Get class names 
 class_names = ds_info.features["label"].names
 
 # Preprocessing function
@@ -30,7 +30,7 @@ train_data = train_data.shuffle(buffer_size=1000).batch(32).prefetch(tf.data.AUT
 
 # Map, batch, and prefetch the test data
 test_data = test_data.map(preprocess_img, num_parallel_calls=tf.data.AUTOTUNE)
-test_data = test_data.batch(32).prefetch(tf.data.AUTOTUNE)  # Added prefetch
+test_data = test_data.batch(32).prefetch(tf.data.AUTOTUNE)
 
 # Callbacks
 early_stopping = tf.keras.callbacks.EarlyStopping(
@@ -40,7 +40,7 @@ early_stopping = tf.keras.callbacks.EarlyStopping(
 lower_lr = tf.keras.callbacks.ReduceLROnPlateau(factor=0.2,
                                                 monitor='val_accuracy',
                                                 min_lr=1e-7,
-                                                patience=2,  # Changed: More reasonable patience
+                                                patience=2,
                                                 verbose=1)
 
 # Set mixed precision policy
@@ -52,17 +52,17 @@ base_model = tf.keras.applications.EfficientNetB1(include_top=False)
 
 # Input and Data Augmentation (you could add data augmentation here)
 inputs = layers.Input(shape=input_shape, name="input_layer")
-x = base_model(inputs)  # , training=False)  <- Important if using BatchNormalization/Dropout during inference
+x = base_model(inputs)
 
 x = layers.GlobalAveragePooling2D(name="pooling_layer")(x)
 x = layers.Dropout(.3)(x)
 
-x = layers.Dense(len(class_names))(x)  # Now uses the correct number of classes
-outputs = layers.Activation("softmax", dtype=tf.float32, name="softmax_float32")(x) #dtype to address mixed precision
+x = layers.Dense(len(class_names))(x)
+outputs = layers.Activation("softmax", dtype=tf.float32, name="softmax_float32")(x)
 model = tf.keras.Model(inputs, outputs)
 
 # Compiling the model
-model.compile(loss="sparse_categorical_crossentropy",  # Correct loss for integer labels
+model.compile(loss="sparse_categorical_crossentropy",
               optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
               metrics=["accuracy"])
 
