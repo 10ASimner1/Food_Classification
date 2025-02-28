@@ -64,7 +64,7 @@ root = tk.Tk()
 root.title("Food Image Classifier")
 
 # Center the window
-window_width = 400  # Adjust as needed
+window_width = 400 
 window_height = 550 # increased height to prevent cutoff
 
 screen_width = root.winfo_screenwidth()
@@ -75,15 +75,14 @@ y_coordinate = int((screen_height/2) - (window_height/2))
 
 root.geometry(f"{window_width}x{window_height}+{x_coordinate}+{y_coordinate}")
 
-# Apply a modern style
 style = ttk.Style()
-style.theme_use("clam")  # Choose a modern theme
+style.theme_use("clam") 
 
 # Create a frame for better layout management
 main_frame = ttk.Frame(root, padding="20")
 main_frame.pack(fill=tk.BOTH, expand=True)
 
-# Browse button with improved styling
+# Browse button
 browse_button = ttk.Button(main_frame, text="Browse Image", command=browse_image, padding=10)
 browse_button.pack(pady=20)
 
