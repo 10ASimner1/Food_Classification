@@ -1,0 +1,141 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 50px; /* You might want to reduce this for smaller screens */
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* This might be causing the box to be next to the image */
+}
+
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+.prediction-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.prediction-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Blue background color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+a.upload-button:hover {
+    background-color: #3e8e41; /* Darker blue on hover */
+}
+
+body.dark-mode form {  /* Target the form in dark mode */
+  background-color: #222; /* Same dark background as the prediction box */
+  color: #eee; /* Same light text color as the prediction box */
+}
+
+body.dark-mode input[type="submit"] { /* Style the submit button in dark mode */
+  background-color: #4CAF50; /* Slightly lighter background for the button */
+  color: #eee; /* Light text color for the button */
+}
+
+body.dark-mode h1 {
+  color: #eee; /* Or any other light color you prefer */
+}
+
+body.dark-mode {
+    background-color: #333; /* Dark background color */
+    color: #eee; /* Light text color */
+}
+
+body.dark-mode button {
+  background-color: #444; /* Slightly lighter background for buttons */
+  color: #eee; /* Light text color for buttons */
+  border: 1px solid #666; /* Slightly lighter border color */
+}
+
+body.dark-mode .prediction-container p {
+  color: #eee;
+}
+
+body.dark-mode .prediction-container {
+  background-color: #222;
+}
+
+#darkModeToggle .fa-moon {
+  display: none;
+}
+
+body.dark-mode #darkModeToggle .fa-sun { /* Hide the sun icon in dark mode */
+  display: none;
+}
+
+body.dark-mode #darkModeToggle .fa-moon { /* Show the moon icon in dark mode */
+  display: inline-block;
+}
+
+@media (min-width: 600px) { /* For screens wider than 600px */
+    .prediction-image {
+        max-width: 80%;
+    }
+}
+
+@media (min-width: 900px) { /* For screens wider than 900px */
+    .prediction-image {
+        max-width: 60%;
+    }
+}
+
+@media (min-width: 1200px) { /* For even wider screens */
+    .prediction-image {
+        max-width: 50%;
+    }
+}
