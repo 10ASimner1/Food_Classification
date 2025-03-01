@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prediction Result</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>Prediction Result <button id="darkModeToggle"><i class="fas fa-sun"></i> <i class="fas fa-moon"></i></button></h1>
+  {% if prediction %}
+      <div class="prediction-container">
+          <p><strong>Prediction:</strong> {{ prediction }}</p>
+          <p><strong>Probability:</strong> {{ probability }}</p>
+      </div>
+      <img src="{{ url_for('static', filename=image_path.replace('static/uploads/', 'uploads/')) }}" alt="Uploaded Image" class="prediction-image">
+  {% else %}
+      <p>No prediction available.</p>
+  {% endif %}
+  <br>
+  <a href="/" class="upload-button">Upload another image</a>
+
+  <script>
+    const toggleButton = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Apply dark mode on page load if previously enabled
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark-mode');
+    }
+
+    toggleButton.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+
+      // Store the user's preference in localStorage
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+  </script>
+</body>
+</html>
